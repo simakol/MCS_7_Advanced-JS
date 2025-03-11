@@ -1,8 +1,4 @@
-// https://unsplash.com/documentation
-// N2hFKxqELoV2Hd6dcIRJn1oRrjfp310WTtPLEXfMXjg
+import { handleSearch } from "./handlers/form";
+import { refs } from "./utils/consts";
 
-/*
-<li class="gallery-card">
-  <img class="gallery-img" src="" alt="" />
-</li>
-*/
+refs.searchForm.addEventListener("submit", handleSearch)
