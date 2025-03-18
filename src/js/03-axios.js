@@ -29,6 +29,12 @@ axios.defaults.baseURL = 'https://67d317c48bca322cc2692f90.mockapi.io';
 
 //* with axios
 
+async function getBooks() {
+  const { data } = await axios.get('/books');
+
+  return data;
+  //   return (await axios.get('/books')).data;
+}
 
 // getBooks().then(console.log).catch(console.log);
 
@@ -68,7 +74,18 @@ axios.defaults.baseURL = 'https://67d317c48bca322cc2692f90.mockapi.io';
 
 //* with axios
 
+function addNewBook(book) {
+  return axios.post('/books', book);
+}
 
+// addNewBook({
+//   title: 'Тестова книга з CSS',
+//   author: 'Я',
+//   genres: ['CSS'],
+//   rating: 9,
+// })
+//   .then(console.log)
+//   .catch(console.error);
 
 /*
  * Update (PUT/PATCH)
@@ -104,6 +121,17 @@ axios.defaults.baseURL = 'https://67d317c48bca322cc2692f90.mockapi.io';
 
 //* with axios
 
+function updateBookById(id, fieldsToUpdate) {
+  return axios.put(`/books/${id}`, fieldsToUpdate);
+}
+
+// updateBookById(8, {
+//   genres: ['Fiction', 'Psyhology'],
+//   rating: 10,
+// })
+//   .then(console.log)
+//   .catch(console.error);
+
 /*
  * Delete (DELETE)
  */
@@ -128,3 +156,10 @@ axios.defaults.baseURL = 'https://67d317c48bca322cc2692f90.mockapi.io';
 // deleteBookById(13).then(console.log).catch(console.error);
 
 //* with axios
+
+function deleteBookById(id) {
+  return axios.delete(`/books/${id}`);
+}
+
+deleteBookById(8).then(console.log).catch(console.error);
+deleteBookById(8).then(console.log).catch(console.error);

@@ -38,3 +38,33 @@ foo().then(console.log)
 //   });
 
 //* with async
+
+const fetchTodos = async () => {
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+
+  console.log(response);
+
+  if (!response.ok) {
+    throw new Error(response.status);
+  }
+
+  return response.json();
+};
+
+//*v1
+// fetchTodos()
+//   .then(data => {
+//     console.log(data);
+//   })
+//   .catch(error => {
+//     console.log(error);
+//   });
+
+//*v2
+
+try {
+  const todos = await fetchTodos();
+  console.log(todos);
+} catch (err) {
+  console.log(err);
+}
