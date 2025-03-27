@@ -26,9 +26,11 @@
 
 // const result1 = concat(10.4, 20);
 // const result2 = concat('20', '30');
+// // const result3 = concat('40', 50);
 
 // console.log(result1); // '1020'
 // console.log(result2); // '2030'
+// console.log(result3); // ''
 
 //? =================================
 
@@ -60,7 +62,7 @@
 // }
 
 // const result1 = merge([1, 2], [3, 4]); // [1, 2, 3, 4]
-// const result2 = merge(['1', '2'], ['3', '4']); // [1, 2, 3, 4]
+// const result2 = merge<string>(['1', '2'], ['3', '4']); // [1, 2, 3, 4]
 
 // console.log(result1); // [1, 2, 3, 4]
 // console.log(result2); // ['1', '2', '3', '4']
@@ -69,8 +71,8 @@
 ? Реалізуйте дженерик last(), який витягує останній елемент з масиву.
 */
 
-// function last(arr) {
-
+// function last<T>(arr: T[]): T | undefined {
+//   return arr[arr.length - 1];
 // }
 
 // const result1 = last([3, 2]);
@@ -88,8 +90,9 @@
 ? Метод forEach, має працювати, як Array.prototype.forEach. 
 */
 
-// type MyArr = {
-//
+// type MyArr<T> = {
+//   items: T[];
+//   forEach(callback: (item: T, index: number, arr: T[]) => void): void;
 // };
 
 // const myArrStrings: MyArr<string> = {
@@ -131,28 +134,46 @@
 //* Partial — це вбудований утилітарний тип, який дозволяє створити новий тип на основі існуючого, де всі властивості оригінального типу стають необов'язковими. Це корисно, коли ви хочете дозволити часткове оновлення об'єктів, оскільки ви не зобов'язані надавати всі властивості.
 // https://www.typescriptlang.org/docs/handbook/utility-types.html
 
-// function updateData(){
-// }
+function updateData<T>(data: T, dataForUpdate: Partial<T>): T {
+  return { ...data, ...dataForUpdate };
+}
 
-// const result1 = updateData(
-//   {
-//     firstName: 'Lizzie',
-//     lastName: 'Ortega',
-//     email: 'sijev@ve.ro',
-//     phone_number: '(369) 669-2267',
-//   },
-//   { email: 'paiw@azoehiisi.bw' }
-// );
+/*
+type T =  {
+    firstName: string,
+    lastName: string,
+    email: string,
+    phone_number: string,
+  }
 
-// console.log(result1);
+  Partial<T> = {
+   firstName?: string,
+   lastName?: string,
+   email?: string,
+   phone_number?: string,
+  }
 
-// const result2 = updateData(
-//   {
-//     title: 'HTML',
-//     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis, earum?',
-//     rating: 9,
-//   },
-//   { rating: 10 }
-// );
+*/
 
-// console.log(result2);
+const result1 = updateData(
+  {
+    firstName: 'Lizzie',
+    lastName: 'Ortega',
+    email: 'sijev@ve.ro',
+    phone_number: '(369) 669-2267',
+  },
+  { email: 'paiw@azoehiisi.bw' }
+);
+
+console.log(result1);
+
+const result2 = updateData(
+  {
+    title: 'HTML',
+    description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis, earum?',
+    rating: 9,
+  },
+  { rating: 10 }
+);
+
+console.log(result2);

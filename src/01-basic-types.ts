@@ -28,37 +28,47 @@
 
 //* object
 
-// let bookJS = {
+type Book = {
+  title: string;
+  description: string;
+  rating: number;
+};
+
+// const bookJS: Book = {
 //   title: 'JS',
 //   description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, illo.',
 //   rating: 9,
 // };
 
-// let bookHTML = {
+// const bookHTML: Book = {
 //   title: 'HTML',
 //   description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, illo.',
 //   rating: 8.5,
 // };
 
 //* array
-// const temperature = [10, 15, 12.5, 13];
+//* v1
+// const temperature: number[] = [10, 15, 12.5, 13];
+//* v2
+// type Temperature = number[];
+// const temperature: Temperature = [10, 15, 12.5, 13];
 
-// const property = ['rating', 10, "a", 111];
+const property: (string | number)[] = ['rating', 10, 'a', 111];
 
-// const books = [
-//   {
-//     title: 'JS',
-//     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, illo.',
-//     rating: 9,
-//   },
-//   {
-//     title: 'HTML',
-//     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, illo.',
-//     rating: 8.5,
-//   },
-//   {
-//     title: 'CSS',
-//     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, illo.',
-//     rating: 9,
-//   },
-// ];
+const books: Book[] = [
+  {
+    title: 'JS',
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, illo.',
+    rating: 9,
+  },
+  {
+    title: 'HTML',
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, illo.',
+    rating: 8.5,
+  },
+  {
+    title: 'CSS',
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, illo.',
+    rating: 9,
+  },
+];

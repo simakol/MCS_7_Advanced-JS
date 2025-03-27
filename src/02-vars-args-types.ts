@@ -5,7 +5,7 @@
  * Unknown
  * Tuple
  * Enum
- * Union Type
+ * Union Type (|)
  * Intersection Type
  * Literal Type
  */
@@ -26,6 +26,10 @@
 /*
 ? Реалізуйте функцію isPlainObject(value), яка перевіряє, чи є передане значення об'єктом.
 */
+
+// function isPlainObject(value: unknown) {
+//   return value instanceof Object;
+// }
 
 // console.log(isPlainObject(null)); // false
 // console.log(isPlainObject(1)); // false
@@ -48,11 +52,14 @@
 ? Дві точки збігаються, якщо збігаються всі їхні координати:
 */
 
-// const p1 = [1, 3, 4];
-// const p2 = [1, 3, 4];
-// const p3 = [0, 8, 4];
+// type Point = [number, number, number];
 
-// function isTheSamePoint() {
+// const p1: Point = [1, 3, 4];
+// const p2: Point = [1, 3, 4];
+// const p3: Point = [0, 8, 4];
+
+// function isTheSamePoint(firstPoint: Point, secondPoint: Point) {
+//   return firstPoint.every((point, i) => point === secondPoint[i]);
 // }
 
 // console.log(isTheSamePoint(p1, p2)); // true
@@ -69,6 +76,8 @@
 // }
 
 // console.log(CardinalDirection);
+
+// console.log(CardinalDirection.East);
 
 // {
 //   North: 0,
@@ -92,8 +101,13 @@
 ? Функція повертає об'єкт із двома полями: text (тут зберігається переданий текст) та status (тут зберігається переданий статус)
 */
 
-// function buildModal() {
+// enum ModalStatus {
+//   Opened,
+//   Closed,
+// }
 
+// function buildModal(text: string, status: ModalStatus) {
+//   return { text, status };
 // }
 
 // console.log(buildModal('Some text for modal', ModalStatus.Closed));
@@ -112,8 +126,9 @@
 ? Реалізуйте функцію lastIndex(str, char), яка повертає індекс останнього входження символу в рядок або null, якщо такого символу немає. Метод lastIndexOf();
 */
 
-// function lastIndex(){
-
+// function lastIndex(str: string, char: string): number | null {
+//   const index = str.lastIndexOf(char);
+//   return index === -1 ? null : index;
 // }
 
 // const result1 = lastIndex('test', 't');
@@ -122,9 +137,7 @@
 // console.log(result1); // 3
 // console.log(result2); // null
 
-// console.log([1,2,3].indexOf(result1));
-
-//* Intersection Type - Тип перетворення дозволяє комбінувати кілька типів в один. Це означає, що змінна повинна задовольняти всім зазначеним типам.
+//* Intersection Type - Тип перетину дозволяє комбінувати кілька типів в один. Це означає, що змінна повинна задовольняти всім зазначеним типам.
 
 /*
 ? Реалізуйте тип Admin, який є перетином типів AdminPermission та User.
@@ -143,15 +156,25 @@
 // };
 
 // type AdminPermission = {
-//   permission: Permission.READ;
+//   permission: Permission;
 // };
 
-// type Admin =
+// type Admin = User & AdminPermission;
+
+// /*
+// type Admin = {
+//   login: string;
+//   permission: Permission;
+// }
+// */
 
 // const user: User = { login: 'login1' };
 
-// function addAdmin() {
-
+// function addAdmin(user: User): Admin {
+//   return {
+//     ...user,
+//     permission: Permission.READ,
+//   };
 // }
 
 // const admin: Admin = addAdmin(user);
@@ -165,6 +188,6 @@
 ? 'Created', 'Paid', 'Shipped', 'Delivered';
 */
 
-// let orderStatus = 'Created';
+let orderStatus: 'Created' | 'Paid' | 'Shipped' | 'Delivered' = 'Created';
 
-// orderStatus = 'Shipped';
+orderStatus = 'Shipped';
